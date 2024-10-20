@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jatin_Portfolio</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/2d0fef1d04.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/typed.js@2.0.15/dist/typed.umd.js"></script>
+</head>
+
+<body>
+   
+<button class="button">
+  <svg viewBox="0 0 384 512" class="svgIcon">
+    <path
+      d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
+    ></path>
+  </svg>
+</button>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="/static/images/logo.png" alt="logo" class="logo">
+                <ul id="sidemenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Projects</a></li>
+                    <li><a href="#contact">Contact Me</a></li>
+                    <i class="fa-solid fa-circle-xmark" onclick = "closemenu()"></i>
+                </ul>
+                <i class="fa-solid fa-bars" onclick = "openmenu()"></i>
+            </nav>
+
+
+            <div class="header-text">
+                <h1>Hey! I am <span>Jatin</span></h1>
+                <h4>I am a <span class="text"></span></h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- ------------------------------------About------------------------------------------------------ -->
+
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-l">
+                    <img src="/static/images/image1.jpg" alt="image1">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">ABOUT <span>ME</span></h1>
+                    <p>I am a tech enthusiast and I love to code. I like to explore new technologies and innovations in the modern world and to fetch the logic and science behind them. I am a Full Stack Developer and like to work upon projects. I like to examine things and provide my views on them.</p>
+
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick ="opentab('skills')">Skills</p>
+                        <p class="tab-links" onclick ="opentab('experience')"> Experience</p>
+                        <p class="tab-links" onclick ="opentab('education')">Education</p>
+
+                    </div>
+
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span>UI/UX</span><br>Designing Web/App interfaces</li>
+                            <li><span>Database</span><br>Database Manupulation</li>
+                            <li><span>Backend</span><br>Building python-based apps</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-contents" id="experience">
+                        <ul>
+                            <li><span>Current:</span><br>Developing projects using Python.</li>
+                            <li><span>2022 - 2023</span><br>Learnt Python, C++, MySQL and several languages.<br>Published 2 Research papers in journal.</li>
+                            <li><span>2019 - 2021</span><br>Learnt basics of Engineering.</li>
+                        </ul>
+                    </div>
+                
+                    <div class="tab-contents" id="education"> 
+                            <ul>
+                            <li><span>Current:</span><br>Pursuing B.Tech. in CSE from Poornima Institute of Engineering And Technology, Jaipur.</li>
+                            <li><span>2021</span><br>Completed High School Graduation.</li>
+                            <li><span>2019</span><br>Completed Matriculation.</li>
+                            </ul>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- --------------------------------------------------- SERVICES ----------------------------------------------------->
+   <div id = "services">
+    <div class="container" >
+        <h1 class="sub-title">SERVICES</h1>
+        <div class="services-list">
+            <div>
+            <i class="fa-solid fa-user-secret"></i>
+            <h2>Research</h2>
+            <p>I am good at reasearch work. I have formatted three Research Papers and published two of them in journals. Click on 'Learn more' to see the glimpses of my Research work. </p>
+            <br>
+            <a href="https://sciencejournals.stmjournals.in/index.php/osmj/article/view/3606">Learn more</a>
+            </div>
+
+            <div>
+            <i class="fa-solid fa-walkie-talkie"></i>
+            <h2>Communication Skills</h2>
+            <p>I am good at communication and negotiation. I have made presentations and have attended many seminars. I am a content writer with expressive style of writing. </p>
+            <br>
+            <a href="#">Learn more</a>
+            </div>
+
+            <div>
+            <i class="fa-solid fa-crop-simple"></i>
+            <h2>Designing</h2>
+            <p>I am good at designing interfaces as well as templates and presentations. I have good command over Canva. Click on 'Learn more'to explore some of my recent designs. </p>
+            <br>
+
+            <a href="https://www.canva.com/design/DAFrtlzJVe8/Kqv8R1bAl6Aw0yfVvdgGsw/edit?utm_content=DAFrtlzJVe8&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">Learn more</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ------------------------------------------------- PORTFOLIO ------------------------------------------------------ */ -->
+<div id="portfolio">
+    <div class="container">
+        <h1 class="sub-title">MY <span>PROJECTS</span></h1>
+        <div class="work-list">
+            <div class="work">
+                <img src="/static/images/work1.png" alt="image2">
+               
+                    <div class="layer">
+                        <h3>HMS App</h3>
+                        <p>The Hospital Management System is a software solution designed to streamline administrative tasks within healthcare facilities. It includes features such as billing and invoicing, electronic medical records (EMR) management, and inventory control. The system ensures efficient workflow management, enhances communication between staff members, and improves patient care by maintaining comprehensive medical records.</p>
+                        <a href="https://github.com/jatinnama7/HMS"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+            </div>
+    
+            <div class="work">
+                <img src="/static/images/work2.png" alt="image3">
+                <div class="layer">
+                    <h3>Weather App</h3>
+                    <p>The weather app provides users with current and forecasted weather conditions based on their location or a chosen location. It typically fetches data from online weather APIs, offering details like temperature, humidity, wind speed, and precipitation. </p>
+                    <a href="https://github.com/jatinnama7/WeatherApp"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+            </div>
+            <div class="work">
+                <img src="/static/images/work3.png" alt="image4">
+                <div class="layer">
+                    <h3>Menu-Project</h3>
+                    <p>The "Menu-Based Project" is designed to showcase how powerful web technologies can be integrated with cloud services to deliver responsive, scalable, and easily manageable web applications. The project employs Flask, a lightweight Python web framework, to handle backend operations, while the front-end is developed using HTML and CSS to ensure a visually appealing and interactive user experience.</p>
+                    <a href="/port"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+    
+        </div>
+        <a href="https://github.com/jatinnama7?tab=repositories" class="btn">See More</a>
+    </div>
+</div> 
+
+<div  id ="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">CONTACT <span>ME</span></h1>
+                <p><i class="fa-solid fa-envelope"></i>jatinnama7@gmail.com</p>
+                <p><i class="fa-solid fa-phone"></i>637632xxxx</p>
+                <div class="social-icons">
+                    <a href="https://github.com/jatinnama7"><i class="fa-brands fa-github"></i></i></a>
+                    <a href="https://www.linkedin.com/in/jatin-nama/"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/jatin.nama.56"><i class="fa-brands fa-facebook"></i></i></a>
+                </div>
+                <a href="static/Jatin_Resume_Updated.pdf" class="btn btn2" download="Resume">Download Resume</a>
+            </div>
+            <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="mail" name="Email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type ="submit" class="btn btn2">Submit</button>
+                    </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="copyright">
+            <p>copyright © Jatin. Made wtih <i class="fa-solid fa-heart"></i> by Jatin Nama</p>
+        </div>
+    </footer>
+</div>
+
+<!-- -----------------------------------------------SCRIPT------------------------------------------------------------ -->
+        <script>   
+            var tablinks = document.getElementsByClassName("tab-links");
+            var tabcontents = document.getElementsByClassName("tab-contents");
+            function opentab(tabname){
+            for(tablink of tablinks){
+                tablink.classList.remove("active-link");
+            }
+            for(tabcontent of tabcontents){
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+            }
+        </script>
+
+        <script>
+            var sidemenu = document.getElementById("sidemenu");
+
+            function openmenu(){
+            sidemenu.style.right=0;
+            }
+
+            function closemenu(){
+            sidemenu.style.right = "-200px";
+            }
+        </script>  
+        <script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbz7kNM2V01t5rdmtPWKkImFJsu0D2CD4SWJSUkSBCMOO-UXVRueB4TMUP7_Yo5wrkaKPA/exec'
+            const form = document.forms['submit-to-google-sheet']
+          
+            form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => console.log('Success!', response))
+                .catch(error => console.error('Error!', error.message))
+            })
+          </script> 
+        <script>
+        var typed = new Typed (".text",{
+
+        strings : ["Python Developer","Researcher","DevOps Engineer","ML Enthusiast","Articulate"],
+        typeSpeed : 100,
+        backSpeed : 10,
+        backDe1ay:1000,
+        loop: true
+        })
+
+        </script>
+ <script>
+    // Get the scroll button (target the first element with class "button")
+    let scrollTopBtn = document.getElementsByClassName("button")[0];
+
+    // Show button when scrolled down 20px
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollTopBtn.style.display = "flex"; // Use "flex" to match the display setting of the button
+        } else {
+            scrollTopBtn.style.display = "none";
+        }
+    };
+
+    // Scroll to top function
+    scrollTopBtn.onclick = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+</script>
+
+    </body>
+ 
+</html>
