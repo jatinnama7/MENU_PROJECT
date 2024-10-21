@@ -19,6 +19,7 @@ from io import BytesIO
 import subprocess
 import google.generativeai as genai
 from dotenv import load_dotenv
+import logging
 
 
 load_dotenv()
@@ -67,8 +68,6 @@ def send_text_message():
     data = request.json
     text_message = data.get('text_message')
     phone_number = data.get('phone_number')
-    # acc_sid=os.getenv('TWILIO_ACCOUNT_SID')
-    # acc_pass = os.getenv('TWILIO_AUTH_TOKEN') 
     try:
         account_sid = os.getenv('TWILIO_ACCOUNT_SID')
         auth_token =  os.getenv("TWILIO_AUTH_TOKEN")
@@ -216,20 +215,15 @@ asl_shapes = {
     'y': '🤙', 'z': '👈'
 }
 
-def clear_console():
-    os.system('cls' if os.name == 'nt' else 'clear')
-
 def fingerspell_animation(text, results):
     animation_result = []
     for letter in text.lower():
-        clear_console()
         if letter in asl_shapes:
             animation_result.append(f"Letter: {letter.upper()} - ASL Shape: {asl_shapes[letter]}")
         else:
             animation_result.append(f"Letter: {letter.upper()} - ASL Shape: Not available")
         time.sleep(1)
 
-    clear_console()
     animation_result.append("Animation complete!")
     results.extend(animation_result)
 
@@ -251,18 +245,39 @@ def fingerspell():
 # Configure the Gemini API
 api = os.getenv('GENAI_API_KEY')
 genai.configure(api_key=api)
+logging.basicConfig(level=logging.INFO)
 
 @app.route('/gemini-ai', methods=['POST'])
 def gemini_ai():
+    # Start measuring the time for the function execution
+    start_time = time.time()
+    
     # Get the user input from the request
     data = request.json
     prompt = data.get('prompt')
 
-    # Choose the Gemini model and generate text
-    model = genai.GenerativeModel("gemini-pro")
-    response = model.generate_content(prompt)
+    # Log the input prompt
+    logging.info(f"Received prompt: {prompt}")
 
-    # Return the generated text in the response
-    return jsonify({'generatedText': response.text})
+    try:
+        # Choose the Gemini model
+        model = genai.GenerativeModel("gemini-pro")
+        
+        # Set a timeout for generating content
+        response = model.generate_content(prompt, timeout=5)  # Set a 5-second timeout
+
+        # Log the duration of the response generation
+        duration = time.time() - start_time
+        logging.info(f"Content generated in {duration:.2f} seconds")
+
+        # Return the generated text in the response
+        return jsonify({'generatedText': response.text})
+
+    except genai.TimeoutError:
+        logging.error("The generation request timed out.")
+        return jsonify({'error': 'The generation request timed out.'}), 504
+    except Exception as e:
+        logging.error(f"An error occurred: {e}")
+        return jsonify({'error': str(e)}), 500
 
     
