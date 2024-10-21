@@ -320,7 +320,4 @@ def gemini_ai():
     # Return the generated text in the response
     return jsonify({'generatedText': response.text})
 
-
-if __name__ == '__main__':
-    app.run(debug=False,port=5000)
     
