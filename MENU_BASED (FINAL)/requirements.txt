@@ -10,3 +10,4 @@ pycaw
 numpy
 flask-cors
 google-generativeai
+python-dotenv
