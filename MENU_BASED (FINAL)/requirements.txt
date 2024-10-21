@@ -1,6 +1,5 @@
 Flask
 twilio
-mediapipe
 pyautogui
 googlesearch-python
 secure-smtplib
@@ -8,9 +7,6 @@ geopy
 googletrans==4.0.0-rc1
 gtts
 pycaw
-opencv-python-headless
-cvzone
 numpy
 flask-cors
-pygame
 google-generativeai
