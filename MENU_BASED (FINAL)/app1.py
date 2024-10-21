@@ -10,10 +10,6 @@ from email.mime.application import MIMEApplication
 from geopy.geocoders import Nominatim
 from googletrans import Translator
 from gtts import gTTS
-from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
-from ctypes import cast, POINTER
-from comtypes import CLSCTX_ALL
-import pythoncom
 import numpy as np
 import base64
 from flask_cors import CORS
@@ -157,57 +153,6 @@ def google_search():
     except Exception as e:
         return jsonify({'status': 'error', 'message': f'Failed to perform Google search: {str(e)}'})
     
-
-@app.route('/control_volume', methods=['POST'])
-def control_volume():
-    try:
-        # Initialize COM for the current thread
-        pythoncom.CoInitialize()
-
-        data = request.json
-        command = data.get('action')  # Changed to 'action' to match AJAX
-        vol = data.get('volume', 0.5)  # Default volume is 50%
-
-        # Log or print for debugging
-        print(f"Command received: {command}")
-        print(f"Volume received: {vol}")
-
-        # Get the audio device
-        devices = AudioUtilities.GetSpeakers()
-        if devices is None:
-            return jsonify({'message': 'Audio device not found.', 'status': 'error'}), 500
-
-        interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
-        volume = cast(interface, POINTER(IAudioEndpointVolume))
-
-        if volume is None:
-            return jsonify({'message': 'Unable to access audio volume interface.', 'status': 'error'}), 500
-
-        # Process the commands
-        if command == 'set_volume':
-            if 0.0 <= vol <= 1.0:
-                print(f"Setting volume to {vol * 100:.0f}%")
-                volume.SetMasterVolumeLevelScalar(vol, None)  # Set volume
-                current_vol = volume.GetMasterVolumeLevelScalar()  # Get the current volume for validation
-                print(f"Current system volume: {current_vol * 100:.0f}%")
-                return jsonify({'message': f"Volume set to {current_vol * 100:.0f}%", 'status': 'success'})
-            else:
-                return jsonify({'message': "Invalid volume value. Please enter a value between 0.0 and 1.0.", 'status': 'error'}), 400
-
-        elif command == 'mute':
-            volume.SetMute(True, None)
-            return jsonify({'message': "Audio muted.", 'status': 'success'})
-
-        elif command == 'unmute':
-            volume.SetMute(False, None)
-            return jsonify({'message': "Audio unmuted.", 'status': 'success'})
-
-        else:
-            return jsonify({'message': "Invalid command.", 'status': 'error'}), 400
-
-    except Exception as e:
-        return jsonify({'message': f"An error occurred: {str(e)}", 'status': 'error'}), 500
-
 
 @app.route('/get-location', methods=['POST'])
 def get_location():
