@@ -240,44 +240,48 @@ def fingerspell():
 
     return jsonify({"results": results})
 
-# Configure the Gemini API
-api = os.getenv('GENAI_API_KEY')
-genai.configure(api_key=api)
+
 logging.basicConfig(level=logging.INFO)
+
+# Initialize Gemini client
+api_key = os.getenv("GENAI_API_KEY")
+if not api_key:
+    raise ValueError("GENAI_API_KEY is not set in environment variables.")
+client = genai.Client(api_key=api_key)
 
 @app.route('/gemini-ai', methods=['POST'])
 def gemini_ai():
-    # Start measuring the time for the function execution
     start_time = time.time()
-    
-    # Get the user input from the request
     data = request.json
     prompt = data.get('prompt')
 
-    # Log the input prompt
+    if not prompt:
+        logging.warning("No prompt provided in request.")
+        return jsonify({'error': 'Prompt is required.'}), 400
+
     logging.info(f"Received prompt: {prompt}")
 
     try:
-        # Choose the Gemini model
-        model = genai.GenerativeModel("gemini-pro")
-        
-        # Set a timeout for generating content
-        response = model.generate_content(prompt, timeout=5)  # Set a 5-second timeout
-
-        # Log the duration of the response generation
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=prompt
+        )
         duration = time.time() - start_time
         logging.info(f"Content generated in {duration:.2f} seconds")
-
-        # Return the generated text in the response
         return jsonify({'generatedText': response.text})
 
-    except genai.TimeoutError:
-        logging.error("The generation request timed out.")
-        return jsonify({'error': 'The generation request timed out.'}), 504
-    except Exception as e:
-        logging.error(f"An error occurred: {e}")
-        return jsonify({'error': str(e)}), 500
+    except genai.RateLimitError:
+        logging.error("Rate limit exceeded.")
+        return jsonify({'error': 'Rate limit exceeded. Please try again later.'}), 429
 
-    
+    except genai.APIError as api_err:
+        logging.error(f"API error: {api_err}")
+        return jsonify({'error': 'Gemini API error occurred.'}), 502
+
+    except Exception as e:
+        logging.error(f"Unexpected error: {e}")
+        return jsonify({'error': 'An unexpected error occurred.'}), 500
+
+
 
 
