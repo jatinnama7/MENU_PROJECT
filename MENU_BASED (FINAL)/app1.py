@@ -18,6 +18,7 @@ import threading
 from io import BytesIO
 import subprocess
 import google.generativeai as genai
+from google import genai
 from dotenv import load_dotenv
 import logging
 
@@ -281,6 +282,7 @@ def gemini_ai():
     except Exception as e:
         logging.error(f"Unexpected error: {e}")
         return jsonify({'error': 'An unexpected error occurred.'}), 500
+
 
 
 
