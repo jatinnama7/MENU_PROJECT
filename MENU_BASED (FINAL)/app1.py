@@ -264,7 +264,8 @@ def gemini_ai():
 
     try:
         response = client.models.generate_content(
-            model="gemini-2.5-flash",
+            #model="gemini-2.5-flash",
+            model="gemini-2.5-flash-lite",
             contents=prompt
         )
         duration = time.time() - start_time
@@ -282,6 +283,7 @@ def gemini_ai():
     except Exception as e:
         logging.error(f"Unexpected error: {e}")
         return jsonify({'error': 'An unexpected error occurred.'}), 500
+
 
 
 
