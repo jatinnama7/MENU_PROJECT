@@ -75,7 +75,7 @@ def send_text_message():
         client.messages.create(
             body=text_message,
             from_=os.getenv('TWILIO_SMS_FROM'),          
-            to= phone_number          
+            to=f"+91{phone_number}"          
         )
         return jsonify({'status': 'success', 'message': 'Text message sent successfully!'})
     except Exception as e:
@@ -281,3 +281,4 @@ def gemini_ai():
         return jsonify({'error': str(e)}), 500
 
     
+
