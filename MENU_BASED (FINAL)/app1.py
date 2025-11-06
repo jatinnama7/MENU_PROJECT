@@ -24,6 +24,7 @@ import logging
 
 load_dotenv()
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def home():
@@ -204,9 +205,6 @@ def translate_and_speak():
     
 
 #Fingerspell animation
-
-CORS(app)
-
 asl_shapes = {
     'a': '👊', 'b': '✋', 'c': '🤏', 'd': '👆', 'e': '🤞', 'f': '👌',
     'g': '🤜', 'h': '🖖', 'i': '🤙', 'j': '🤚', 'k': '🤞', 'l': '👍',
@@ -281,4 +279,5 @@ def gemini_ai():
         return jsonify({'error': str(e)}), 500
 
     
+
 
